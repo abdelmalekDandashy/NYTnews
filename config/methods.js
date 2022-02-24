@@ -11,17 +11,32 @@ import {
 let myProxy = new Proxy();
 
 export async function Get_News_by_Query(query) {
-
-    let result = await myProxy.Get_News_by_Query(query);
-    console.log(result);
-    if (result?.response?.docs !== null && result?.response?.docs !== undefined) {
+    try{
+        let result = await myProxy.Get_News_by_Query(query);
         return {
-            docs: result?.response?.docs
+            docs: result?.response?.docs,
+            error: false
         }
-    } else {
+    }catch(err){
+      //  console.log(err)
         return {
+            docs:null,
             error: true
         }
     }
-
+}
+export async function Get_More_news(number) {
+    try{
+        let result = await myProxy.Get_More_News(number);
+        return {
+            docs: result?.response?.docs,
+            error: false
+        }
+    }catch(err){
+      //  console.log(err)
+        return {
+            docs:null,
+            error: true
+        }
+    }
 }

@@ -46,4 +46,12 @@ export class Proxy {
     });
     return result;
   }
+  async Get_More_News(number) {
+    const result = await this.apiGet(
+      Base_URL+`&page=${number}`
+    ).then(async resp => {
+      return resp;
+    });
+    return result;
+  }
 }

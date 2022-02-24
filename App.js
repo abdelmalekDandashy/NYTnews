@@ -14,8 +14,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistor, store } from './store';
 import React, { useEffect } from 'react';
 import Home from './screens/Home';
-import Splash from './screens/Splash';
 import SplashScreen from 'react-native-splash-screen'
+import NewsDetails from './screens/NewsDetails';
 
 
 const Stack = createNativeStackNavigator();
@@ -38,6 +38,12 @@ const App = () => {
               component={Home}
               options={{ headerShown: false }}
             />
+            <Stack.Screen
+              name="NewsDetails"
+              component={NewsDetails}
+              options={{ headerShown: true }}
+            />
+
           </Stack.Navigator>
         </NavigationContainer>
       </PersistGate>
