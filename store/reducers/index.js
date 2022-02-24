@@ -1,11 +1,9 @@
-import {combineReducers} from 'redux';
-import auth from './auth';
-import Tables from './Tables'
-import extensions from './extensions'
+import {
+  combineReducers
+} from 'redux';
+import News from './News'
 const appReducers = combineReducers({
-  auth,
-  Tables,
-  extensions
+  News
 });
 
 export default appReducers;

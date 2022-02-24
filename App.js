@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable prettier/prettier */
 /**
  * Sample React Native App
@@ -17,12 +18,13 @@ import Splash from './screens/Splash';
 import SplashScreen from 'react-native-splash-screen'
 
 
-
-
 const Stack = createNativeStackNavigator();
 const App = () => {
+
+
   useEffect(() => {
     // setTimeout(() => { console.log('object'); }, 10000);
+    // getHomeNews();
     SplashScreen.hide();
   }, [])
 
