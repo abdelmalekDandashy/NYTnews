@@ -11,15 +11,20 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistor, store } from './store';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Home from './screens/Home';
+import Splash from './screens/Splash';
+import SplashScreen from 'react-native-splash-screen'
 
 
 
 
 const Stack = createNativeStackNavigator();
 const App = () => {
-
+  useEffect(() => {
+    // setTimeout(() => { console.log('object'); }, 10000);
+    SplashScreen.hide();
+  }, [])
 
   return (
     <Provider store={store}>
