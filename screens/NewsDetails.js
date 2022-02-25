@@ -1,8 +1,27 @@
 
 import React from 'react'
-import { View, ScrollView, StyleSheet, Image ,FlatList, Text, Button, TouchableOpacity} from 'react-native';
+import { View, ScrollView, StyleSheet, Image ,FlatList, Text, Button, TouchableOpacity, Share } from 'react-native';
 import { Card } from 'react-native-elements';
 const NewsDetails = ({route}) => {
+    const onShare = async (data) => {
+        try {
+          const result = await Share.share({
+            message:
+            data.web_url,
+          });
+          if (result.action === Share.sharedAction) {
+            if (result.activityType) {
+              // shared with activity type of result.activityType
+            } else {
+              // shared
+            }
+          } else if (result.action === Share.dismissedAction) {
+            // dismissed
+          }
+        } catch (error) {
+          alert(error.message);
+        }
+      };
     const data = route.params.item
     //console.log(""data)
   return (
@@ -19,7 +38,7 @@ const NewsDetails = ({route}) => {
                 />
                 <Text style={{fontStyle:'italic',fontWeight:"bold"}}>  CATEGORY: {data.type_of_material}</Text>
                 <Text style={{textAlign:"center", marginTop:"3%",fontSize:18}}>{data.abstract}</Text>
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={()=>onShare(data)}>
                       <Text style={{color:"skyblue",fontSize:18,fontWeight:"bold",marginTop:"30%"}}>
                           share !
                       </Text>

@@ -1,5 +1,3 @@
-import * as ACTIONS from '../actions/Actions'
-
 function arrayUnique(array) {
   var a = array.concat();
   for(var i=0; i<a.length; ++i) {
@@ -11,17 +9,10 @@ function arrayUnique(array) {
 
   return a;
 }
-
-
-  // Merges both arrays and gets unique itemsvar
-  
-
 const INITIAL_STATE = {
   docs: null,
   error: true
 };
-
-
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
     case 'GET_NEWS':

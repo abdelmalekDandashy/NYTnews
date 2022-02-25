@@ -1,12 +1,3 @@
-/* eslint-disable no-shadow */
-/* eslint-disable prettier/prettier */
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
 import { Provider } from 'react-redux';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -20,11 +11,7 @@ import NewsDetails from './screens/NewsDetails';
 
 const Stack = createNativeStackNavigator();
 const App = () => {
-
-
   useEffect(() => {
-    // setTimeout(() => { console.log('object'); }, 10000);
-    // getHomeNews();
     SplashScreen.hide();
   }, [])
 
@@ -43,7 +30,6 @@ const App = () => {
               component={NewsDetails}
               options={{ headerShown: true }}
             />
-
           </Stack.Navigator>
         </NavigationContainer>
       </PersistGate>

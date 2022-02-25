@@ -6,13 +6,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as functions from '../config/methods';
 import * as actions from '../store/actions/Actions';
 import { Text, Card, Button, Icon } from 'react-native-elements';
+import PlaceHolder from './PlaceHolder';
 const Home = ({ navigation }) => {
-    const myNews = useSelector(state => state.News.docs)
-    //alert(JSON.stringify(myNews))
     const dispatch = useDispatch();
+
+    //states 
     const [loading, setloading] = useState(false);
-    const [pgNum, setpgNum] = useState(0);
-    console.log(pgNum)
+    const [pgNum, setpgNum] = useState(0); 
+
+    //selectors
+    const myNews = useSelector(state => state.News.docs)
+
+//get more articles function
     const GetmoreNews = async(pgNum) => {
         setpgNum(pgNum+1)
         setloading(true)
@@ -25,28 +30,21 @@ const Home = ({ navigation }) => {
             alert('NOT more data')
         }
     }
-    const homeNewsHandler = (docs) => {
-        dispatch(actions.getNews(docs))
-    }
-
+// get articles from server
     async function getHomeNews(subject) {
         let result = await functions.Get_News_by_Query(subject);
         if (result.docs !== null) {
-            //setDocs(result);
-           homeNewsHandler(result);
-         // console.log(JSON.stringify(result))
-        }else{
-            //alert('NOT DONE')
+            dispatch(actions.getNews(result))
         }
     }
-
+//use effect 
     useEffect(() => {
         getHomeNews();
     }, [])
 
     return (
         <View>
-        <FlatList
+            {myNews ?  <FlatList
         style={{height:"98%"}}
         onEndReached={()=>
             GetmoreNews(pgNum)
@@ -95,7 +93,8 @@ const Home = ({ navigation }) => {
         }
         keyExtractor={(item) => item._id}
        // numColumns={3}
-      />
+      /> : <PlaceHolder/>}
+       
        {loading?  <View style={{flex:1}}>
           <ActivityIndicator size="large"/>
       </View> 
