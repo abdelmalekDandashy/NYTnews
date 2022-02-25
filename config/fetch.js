@@ -54,4 +54,12 @@ export class Proxy {
     });
     return result;
   }
+  async Get_by_search(keyword) {
+    const result = await this.apiGet(
+      Base_URL+`&q=${keyword}`
+    ).then(async resp => {
+      return resp;
+    });
+    return result;
+  }
 }

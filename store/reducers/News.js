@@ -6,12 +6,11 @@ function arrayUnique(array) {
               a.splice(j--, 1);
       }
   }
-
   return a;
 }
 const INITIAL_STATE = {
   docs: null,
-  error: true
+  error: true,
 };
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {

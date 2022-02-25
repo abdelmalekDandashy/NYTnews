@@ -3,10 +3,6 @@
 import {
     Proxy
 } from './fetch';
-import * as P from './fetch';
-import {
-    Alert
-} from 'react-native'
 
 let myProxy = new Proxy();
 
@@ -37,6 +33,25 @@ export async function Get_More_news(number) {
         return {
             docs:null,
             error: true
+        }
+    }
+}
+
+export async function Get_by_search(keyword) {
+    try{
+        let result = await myProxy.Get_by_search(keyword);
+        //console.log(result)
+        return {
+            SearchData: result?.response?.docs,
+            error: false,
+            loading:false
+        }
+    }catch(err){
+      //  console.log(err)
+        return {
+            SearchData:null,
+            error: true,
+            loading:false
         }
     }
 }
